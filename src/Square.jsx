@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 
 
 export default function Square() {
-  const initialBoard = Array.from({ length: 10 }, (_, row) =>
-  Array.from({ length: 10 }, (_, col) =>
+  const initialBoard = 1;
+  const [size, setsize] = useState(initialBoard)
+  const handleclick  = ()=>{
+    setsize(prevsize => prevsize + 1)
+  }
+  const board = Array.from({ length: size }, (_, row) =>
+  Array.from({ length: size }, (_, col) =>
       (row + col) % 2 === 0 ? 'bg-white' : 'bg-black'
-  )
-);
-const [board] = useState(initialBoard);
-
+  ));
+  
+  
   return (
-    <div className="flex flex-col w-screen h-screen">
+    <div className="flex flex-col w-screen h-screen" onClick={handleclick}>
             {board.map((row, rowIndex) => (
                 <div key={rowIndex} className="flex flex-auto">
                     {row.map((color, colIndex) => (
